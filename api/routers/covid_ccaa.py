@@ -23,7 +23,7 @@ def get_ccaa_data(ccaa):
 
 @router.get("/covid_ccaa/most_complete_vaccinated")
 def get_ccaas_most_compl_vac():
-    results = list(db["Covid_Comunidades"].find({},{"Comunidad autónoma": 1, "% Pers. Pauta Completa": 1,"_id": 0}).sort("% Pers. Pauta Completa"))
+    results = list(db["Covid_Comunidades"].find({},{"Comunidad autónoma": 1, "Porcentaje Pauta Completa": 1,"_id": 0}).sort("Porcentaje Pauta Completa", 1))
     return loads(json_util.dumps(results))
 
 @router.get("/covid_ccaa/{vaccine}/{positions}")
