@@ -1,7 +1,5 @@
 from fastapi import FastAPI
-
-from api.routers import covid_ccaa, covid_deaths, covid_recovered
-from .routers import covid_cases
+from .routers import covid_internacional, covid_ccaa
 
 app = FastAPI()
 
@@ -15,9 +13,7 @@ app = FastAPI()
 
 # Un endpoint será una función.
 
-app.include_router(covid_cases.router)
-app.include_router(covid_deaths.router)
-app.include_router(covid_recovered.router)
+app.include_router(covid_internacional.router)
 app.include_router(covid_ccaa.router)
 
 @app.get("/")
