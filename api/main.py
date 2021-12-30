@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from .routers import covid_cases
 
 app = FastAPI()
 
@@ -12,16 +13,8 @@ app = FastAPI()
 
 # Un endpoint será una función.
 
+app.include_router(covid_cases.router)
+
 @app.get("/")
 async def root():
     return {"message": "Hola"}
-
-@app.get("/hello/{name}")
-async def salute(name):
-    return {"message": f"Hola, {name}"}
-
-@app.get("/hello/{name}/{age}")
-async def person(name, age):
-    return {"name": {"value": name,"type" : str(type(name))},
-            "age": {"value": age,"type" : str(type(age))}}
-            
