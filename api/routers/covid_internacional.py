@@ -18,5 +18,5 @@ def get_country_list():
 
 @router.get("/covid_internacional/{country}/{data}")
 def get_country_data(country, data):
-    results = list(db[f"Covid_{data}_Checked"].find({"Country/Region": country}))
+    results = list(db[f"Covid_{data}_Checked"].find({"Country/Region": country},{"_id":0}))
     return loads(json_util.dumps(results))
