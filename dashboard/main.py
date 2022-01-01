@@ -4,9 +4,10 @@ from data.get import get_country_list, get_country_data, get_country_coord
 
 from streamlit_folium import folium_static
 import folium
+import pandas as pd
 
-st.title("Covid-19 Dashboard")
-st.text("This is a streamlit display for visualizing data about Covid-19")
+st.title("Covid-19 International Dashboard")
+st.header("This is a streamlit display for visualizing data about Covid-19 on international scope")
 
 chosen_country = st.selectbox("Select country", [country["Country/Region"] for country in get_country_list()])
 chosen_data = st.selectbox("Select data type", ["Cases","Deaths","Recovered"])
@@ -15,17 +16,18 @@ data_country = get_country_data(chosen_country, chosen_data)
 coord_country = get_country_coord(chosen_country)
 
 st.text("")
-st.text("Its coordinates are: ")
-st.text(coord_country)
+#st.text("Its coordinates are: ")
+#st.text(coord_country)
 
 st.text("")
-st.text("Its data is: ")
-st.text(data_country)
+#st.text("Its data is: ")
+#st.text(data_country)
 
 st.header("Data Graph")
 st.text("")
 
-st.line_chart(data=data_country[0].values())
+
+st.line_chart(data_country[0].values())
 
 st.header("Data Map")
 st.text("")
