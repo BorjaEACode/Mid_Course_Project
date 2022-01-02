@@ -1,19 +1,17 @@
 from folium.map import Tooltip
 import streamlit as st
 from data.get import get_country_list, get_country_data, get_country_coord
+from data.functions import create_map, create_coord_list, create_data_list
+from datetime import datetime
 
 from streamlit_folium import folium_static
 import folium
-import pandas as pd
 
 st.title("Covid-19 International Dashboard")
 st.header("This is a streamlit display for visualizing data about Covid-19 on international scope")
 
-chosen_country = st.selectbox("Select country", [country["Country/Region"] for country in get_country_list()])
+chosen_country = st.multiselect("Select country", [country["Country/Region"] for country in get_country_list()])
 chosen_data = st.selectbox("Select data type", ["Cases","Deaths","Recovered"])
-
-data_country = get_country_data(chosen_country, chosen_data)
-coord_country = get_country_coord(chosen_country)
 
 st.text("")
 #st.text("Its coordinates are: ")
@@ -22,16 +20,15 @@ st.text("")
 st.text("")
 #st.text("Its data is: ")
 #st.text(data_country)
-
+st.date_input("Choose a date", value=datetime(2021,4,10),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
 st.header("Data Graph")
 st.text("")
 
 
-st.line_chart(data_country[0].values())
+#st.line_chart(data_country[0].values())
 
 st.header("Data Map")
 st.text("")
 
-m = folium.Map(location=(coord_country[0]["Lat"],coord_country[0]["Long"]), zoom_start=4)
-folium.Marker((coord_country[0]["Lat"],coord_country[0]["Long"]), popup=chosen_country, tooltip=(chosen_country,data_country[0]["4/10/21"],chosen_data)).add_to(m)
-folium_static(m)
+create_map(chosen_country, chosen_data)
+
