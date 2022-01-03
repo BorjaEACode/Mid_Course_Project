@@ -1,9 +1,11 @@
 from os import name
+from pandas.core.accessor import PandasDelegate
 from streamlit_folium import folium_static
 import folium
 import streamlit as st
 import plotly.io as pio
 import plotly.graph_objs as go
+import pandas as pd
 from data.get import get_country_coord, get_country_data
 from data.get_communities import get_ccaa_full_data
 
@@ -21,8 +23,15 @@ def create_data_list(listacountries, chosen_data):
         listadatacountries.append(get_country_data(country, chosen_data))
     return listadatacountries
 
-def create_graph(listacountries, chosen_data):
-    return
+def change_date(date):
+    date_ok = date.strftime("%-m/%d/%y")
+    return date_ok
+
+def create_graph(listacountries, chosen_data, starting_date, ending_date):
+    listadatacountries = create_data_list(listacountries,chosen_data)
+    starting_date_ok = change_date(starting_date)
+    ending_date_ok = change_date(ending_date)
+    return None
 
 
 def create_map(listacountries,chosen_data):
@@ -42,8 +51,14 @@ def create_data_list_ccaa(listaccaa):
     return listavaccinesccaa
 
 def create_table(listaccaa):
-    listadataccaa = create_data_list_ccaa(listaccaa)
-    return st.dataframe(listadataccaa)
+    listafulldataccaa = create_data_list_ccaa(listaccaa)
+    if len(listafulldataccaa)==0:    
+        return None
+    else:
+        df= pd.DataFrame()
+        for i in range(0,len(listafulldataccaa)):
+            df.append(listafulldataccaa[i],ignore_index=True)
+    return st.dataframe(df)
 
 # pio.renderers.default = 'notebook'
 def radar_plot_ccaa(listaccaa):
