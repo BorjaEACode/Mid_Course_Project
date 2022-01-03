@@ -1,34 +1,35 @@
 from folium.map import Tooltip
 import streamlit as st
-from data.get import get_country_list, get_country_data, get_country_coord
-from data.functions import create_map, create_coord_list, create_data_list
+from data.get import get_country_list
+from data.get_communities import get_ccaa_list
+from data.functions import create_map, create_table, radar_plot_ccaa
 from datetime import datetime
 
 from streamlit_folium import folium_static
 import folium
 
 st.title("Covid-19 International Dashboard")
-st.header("This is a streamlit display for visualizing data about Covid-19 on international scope")
 
-chosen_country = st.multiselect("Select country", [country["Country/Region"] for country in get_country_list()])
+chosen_country = st.multiselect("Select country/countries", [country["Country/Region"] for country in get_country_list()])
 chosen_data = st.selectbox("Select data type", ["Cases","Deaths","Recovered"])
 
-st.text("")
-#st.text("Its coordinates are: ")
-#st.text(coord_country)
+st.header("Data Map")
 
-st.text("")
-#st.text("Its data is: ")
-#st.text(data_country)
-st.date_input("Choose a date", value=datetime(2021,4,10),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
+create_map(chosen_country, chosen_data)
+
 st.header("Data Graph")
-st.text("")
+starting_date = st.date_input("Choose a starting date", value=datetime(2020,1,22),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
+ending_date = st.date_input("Choose a ending date", value=datetime(2021,4,10),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
 
 
 #st.line_chart(data_country[0].values())
 
-st.header("Data Map")
-st.text("")
+st.title("Covid-19 Spanish Dashboard")
 
-create_map(chosen_country, chosen_data)
+st.header("Data Table")
+chosen_ccaa = st.multiselect("Select community/communities", [ccaa["Comunidad autónoma"] for ccaa in get_ccaa_list()])
+create_table(chosen_ccaa)
 
+st.header("Data Radar Plot")
+radar_plot = radar_plot_ccaa(chosen_ccaa)
+st.plotly_chart(radar_plot)

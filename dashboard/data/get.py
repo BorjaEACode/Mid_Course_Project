@@ -9,3 +9,4 @@ def get_country_coord(country):
 
 def get_country_data(country,data):
     return requests.get(url+f"/covid_internacional/data/{country}/{data}").json()
+
