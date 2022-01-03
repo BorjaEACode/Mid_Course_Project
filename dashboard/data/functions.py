@@ -52,10 +52,10 @@ def create_data_list_ccaa(listaccaa):
 
 def create_table(listaccaa):
     listafulldataccaa = create_data_list_ccaa(listaccaa)
-    if len(listafulldataccaa)==0:    
+    if len(listafulldataccaa)==0:  #MOVER A create_data_list_ccaa  
         return None
     else:
-        df= pd.DataFrame()
+        df= pd.DataFrame()  #MOVER A OTRA FUNCION
         for i in range(0,len(listafulldataccaa)):
             df.append(listafulldataccaa[i],ignore_index=True)
     return st.dataframe(df)
