@@ -20,10 +20,9 @@ create_map(chosen_country, chosen_data)
 st.header("Data Graph")
 starting_date = st.date_input("Choose a starting date", value=date(2020,1,22),min_value=date(2020,1,22), max_value=date(2021,4,10))
 ending_date = st.date_input("Choose a ending date", value=date(2021,4,10),min_value=date(2020,1,22), max_value=date(2021,4,10))
-create_date_data_list(chosen_country, chosen_data,create_date_list(starting_date, ending_date))
+#create_date_data_list(chosen_country, chosen_data,create_date_list(starting_date, ending_date))
 
 #create_graph(chosen_country,chosen_data,starting_date,ending_date)
-#st.line_chart(data_country[0].values())
 
 st.title("Covid-19 Spanish Dashboard")
 

@@ -32,5 +32,4 @@ def get_country_data_date(country, data, date:date):
     date_str = date.strftime("%-m/%d/%y")
     results = list(db[f"Covid_{data.title()}_OK"].find({"Country/Region": country, "Date": date_str},{"value":1,"Date":1,"Country/Region":1,"_id":0}))
     return loads(json_util.dumps(results))
-
-# 1/22/20
+    

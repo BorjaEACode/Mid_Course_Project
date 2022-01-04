@@ -34,7 +34,7 @@ def create_date_data_list(listacountries, chosen_data, listadate):
     for country in listacountries:
         for date in listadate:
             listadatadatecountries.append(get_country_data_date(country, chosen_data, date))
-    return listadatadatecountries
+    return print(listadatadatecountries)
 
 #NATIONAL AUX FUNCTIONS
 
