@@ -17,13 +17,12 @@ def create_graph(listacountries, chosen_data, starting_date, ending_date):
     ending_date_ok = change_date(ending_date)
     return None
 
-
 def create_map(listacountries,chosen_data):
     m = folium.Map(location=[0,0], zoom_start=2)
     listacoordcountries = create_coord_list(listacountries)
     listadatacountries = create_data_list(listacountries,chosen_data)
     for i in range(len(listacountries)):
-        folium.Marker((listacoordcountries[i][0]["Lat"],listacoordcountries[i][0]["Long"]), popup=listacountries[i], tooltip=(listacountries[i],listadatacountries[i][-1]["value"],f"Total {chosen_data}")).add_to(m)
+        folium.Marker((listacoordcountries[i][0]["Lat"],listacoordcountries[i][0]["Long"]), popup=listacountries[i], tooltip=(listacountries[i],listadatacountries[i][-1][f"{chosen_data}"],f"Total {chosen_data}")).add_to(m)
     return folium_static(m)
 
 #NATIONAL FUNCTIONS
