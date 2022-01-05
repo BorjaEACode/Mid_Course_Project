@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from ..database.mongo import db
 from bson import json_util
 from json import loads
+from datetime import datetime 
 
 router = APIRouter()
 
@@ -28,13 +29,23 @@ def get_country_data(country, data):
     return loads(json_util.dumps(results))
 
 @router.get("/covid_internacional/date_data/{country}/{data}/{date}")
-def get_country_data_date(country, data, date:datetime):
-    results = list(db["Covid_Data"].find({"Country/Region": country, "Date": date},{f"{data}":1,"Date":1,"Country/Region":1,"_id":0}))
+def get_country_data_date(country, data, date):
+    if type(date)==str:
+        date = datetime.strptime(date,"%Y-%m-%d")
+    else:
+        date=date
+    results = list(db["Covid_Data"].find({"Country/Region": country, "Date": date},{"Country/Region":1,"Date":1,f"{data}":1,"_id":0}))
     return loads(json_util.dumps(results))
 
 @router.get("/covid_internacional/between_date_data/{country}/{data}/{date1}/{date2}")
-def get_country_data_between_date(country, data, date1:date, date2:date):
+def get_country_data_between_date(country, data, date1, date2):
+    if type(date1)==str:
+        date1 = datetime.strptime(date1,"%Y-%m-%d")
+        date2 = datetime.strptime(date2,"%Y-%m-%d")
+    else:
+        date1=date1
+        date2=date2
     results = list(db["Covid_Data"].find({"Country/Region": country, "Date":{"$gte":date1, "$lte":date2}},
-    {f"{data}":1,"Date":1,"Country/Region":1,"_id":0}))
+    {"Country/Region":1,f"{data}":1,"Date":1,"_id":0}))
     return loads(json_util.dumps(results))
     

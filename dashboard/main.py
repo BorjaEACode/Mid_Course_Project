@@ -20,8 +20,9 @@ create_map(chosen_country, chosen_data)
 st.header("Data Graph")
 starting_date = st.date_input("Choose a starting date", value=datetime(2020,1,22),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
 ending_date = st.date_input("Choose a ending date", value=datetime(2021,4,10),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
-create_data_date_list(chosen_country, chosen_data, starting_date)
-#create_data_graph(chosen_country,chosen_data,starting_date,ending_date)
+
+#create_data_date_list(chosen_country, chosen_data, starting_date)
+create_data_graph(chosen_country,chosen_data,starting_date,ending_date)
 #create_date_data_list(chosen_country, chosen_data,create_date_list(starting_date, ending_date))
 
 #create_graph(chosen_country,chosen_data,starting_date,ending_date)
