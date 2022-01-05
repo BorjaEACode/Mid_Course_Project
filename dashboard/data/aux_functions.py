@@ -21,12 +21,17 @@ def create_data_list(listacountries, chosen_data):
         listadatacountries.append(get_country_data(country, chosen_data))
     return listadatacountries
 
+def create_data_date_list(listacountries, chosen_data, date):
+    listadatadatecountries = []
+    for country in listacountries:
+        listadatadatecountries.append(get_country_data_date(country,chosen_data,date))
+    return print(listadatadatecountries)
+
 def create_data_graph(listacountries,chosen_data,date1,date2):
     listadatagraph=[]
     for country in listacountries:
         listadatagraph.append(get_country_data_between_date(country,chosen_data,date1,date2))
-    return print(listadatagraph)
-
+    return listadatagraph
 
 #def create_date_list(starting_date, ending_date):
     delta = timedelta(days=1)

@@ -28,7 +28,7 @@ def get_country_data(country, data):
     return loads(json_util.dumps(results))
 
 @router.get("/covid_internacional/date_data/{country}/{data}/{date}")
-def get_country_data_date(country, data, date:date):
+def get_country_data_date(country, data, date:datetime):
     results = list(db["Covid_Data"].find({"Country/Region": country, "Date": date},{f"{data}":1,"Date":1,"Country/Region":1,"_id":0}))
     return loads(json_util.dumps(results))
 
