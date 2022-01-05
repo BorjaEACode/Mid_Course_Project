@@ -5,10 +5,6 @@ import pandas as pd
 
 #INTERNATIONAL AUX FUNCTIONS
 
-def change_date(date):
-    date_ok = date.strftime("%-m/%d/%y")
-    return date_ok
-
 def create_coord_list(listacountries):
     listacoordcountries = []
     for country in listacountries:
@@ -25,28 +21,13 @@ def create_data_date_list(listacountries, chosen_data, date):
     listadatadatecountries = []
     for country in listacountries:
         listadatadatecountries.append(get_country_data_date(country,chosen_data,date))
-    return print(listadatadatecountries)
+    return listadatadatecountries
 
 def create_data_graph(listacountries,chosen_data,date1,date2):
-    listadatagraph=[]
+    df_countries=pd.DataFrame()
     for country in listacountries:
-        listadatagraph.append(get_country_data_between_date(country,chosen_data,date1,date2))
-    return print(listadatagraph)
-
-#def create_date_list(starting_date, ending_date):
-    delta = timedelta(days=1)
-    listadate=[]
-    while starting_date <= ending_date:
-        listadate.append((starting_date))
-        starting_date += delta
-    return listadate
-
-#def create_date_data_list(listacountries, chosen_data, listadate):
-    listadatadatecountries = []
-    for country in listacountries:
-        for date in listadate:
-            listadatadatecountries.append(get_country_data_date(country, chosen_data, date))
-    return print(listadatadatecountries)
+        df_countries = df_countries.append(get_country_data_between_date(country,chosen_data,date1,date2))
+    return df_countries
 
 #NATIONAL AUX FUNCTIONS
 
