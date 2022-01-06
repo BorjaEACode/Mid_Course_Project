@@ -41,10 +41,3 @@ def create_data_list_ccaa(listaccaa):
         for ccaa in listaccaa:
             listavaccinesccaa.append(get_ccaa_full_data(ccaa))
         return listavaccinesccaa
-
-def create_dataframe(listaccaa):
-    listafulldataccaa = create_data_list_ccaa(listaccaa)
-    df = pd.DataFrame()
-    for i in range(0,len(listafulldataccaa)):
-        df= df.append(pd.DataFrame(listafulldataccaa[i]))
-    return df

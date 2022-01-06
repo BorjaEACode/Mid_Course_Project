@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import datetime
 from fastapi import APIRouter
 from ..database.mongo import db
 from bson import json_util

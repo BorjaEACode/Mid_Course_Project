@@ -2,6 +2,7 @@ from streamlit_folium import folium_static
 import folium
 import plotly.graph_objs as go
 import plotly.express as px
+import pandas as pd
 from data.aux_functions import create_coord_list, create_data_list, create_data_list_ccaa
 
 #INTERNATIONAL FUNCTIONS
@@ -22,6 +23,13 @@ def create_map(listacountries,chosen_data):
     return folium_static(m)
 
 #NATIONAL FUNCTIONS
+
+def create_dataframe(listaccaa):
+    listafulldataccaa = create_data_list_ccaa(listaccaa)
+    df = pd.DataFrame()
+    for i in range(0,len(listafulldataccaa)):
+        df= df.append(pd.DataFrame(listafulldataccaa[i]))
+    return df
 
 # pio.renderers.default = 'notebook'
 def radar_plot_ccaa(listaccaa):
