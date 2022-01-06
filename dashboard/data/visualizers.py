@@ -3,7 +3,7 @@ import folium
 import plotly.graph_objs as go
 import plotly.express as px
 import pandas as pd
-from data.aux_functions import create_coord_list, create_data_list, create_data_list_ccaa
+from data.aux_functions import create_coord_list, create_data_list, create_data_list_ccaa, get_ccaa_full_data
 
 #INTERNATIONAL FUNCTIONS
 
@@ -48,3 +48,17 @@ def radar_plot_ccaa(listaccaa):
                                 ))
           
     return fig   
+
+def create_pie_chart(chosen_pie_ccaa):
+    if chosen_pie_ccaa==None:
+        return go.Pie()
+    elif chosen_pie_ccaa:
+        datos_chart = get_ccaa_full_data(chosen_pie_ccaa)
+        labels = ["Pfizer Entregadas","Moderna Entregadas","AstraZeneca Entregadas","Janssen Entregadas"]
+        values = []
+        for dato in datos_chart:
+            for label in labels:
+                values.append(dato[f"{label}"])
+        pie_chart = go.Figure(data=[go.Pie(labels=labels,values=values, hole=.3)])
+        return pie_chart
+
