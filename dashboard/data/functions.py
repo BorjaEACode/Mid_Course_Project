@@ -1,13 +1,7 @@
-from os import name
-from pandas.core.accessor import PandasDelegate
 from streamlit_folium import folium_static
 import folium
-import streamlit as st
-import plotly.io as pio
 import plotly.graph_objs as go
 import plotly.express as px
-import pandas as pd
-from data.get_communities import get_ccaa_full_data
 from data.aux_functions import create_coord_list, create_data_list, create_data_list_ccaa
 
 #INTERNATIONAL FUNCTIONS
@@ -16,7 +10,7 @@ def create_graph(df_countries,chosen_data):
     if df_countries.empty==True:
         return px.line()
     else:
-        figure = px.line (df_countries, y=f"{chosen_data}", color="Country/Region")
+        figure = px.line (df_countries, x="Date", y=f"{chosen_data}", color="Country/Region")
     return figure
 
 def create_map(listacountries,chosen_data):

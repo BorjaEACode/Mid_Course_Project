@@ -1,18 +1,15 @@
-from folium.map import Tooltip
 import streamlit as st
 from data.get import get_country_list
 from data.get_communities import get_ccaa_list
 from data.functions import create_map, create_graph, radar_plot_ccaa
-from data.aux_functions import create_dataframe, create_data_graph, create_data_date_list
-from datetime import date, datetime
+from data.aux_functions import create_dataframe, create_data_graph
+from datetime import datetime
 
-from streamlit_folium import folium_static
-import folium
 
 st.title("Covid-19 International Dashboard")
 
 chosen_country = st.multiselect("Select country/countries", get_country_list())
-chosen_data = st.selectbox("Select data type", ["Cases","Deaths","Recovered"])
+chosen_data = st.selectbox("Select data for map", ["Cases","Deaths","Recovered"])
 st.header("Data Map")
 
 create_map(chosen_country, chosen_data)
@@ -20,9 +17,10 @@ create_map(chosen_country, chosen_data)
 st.header("Data Graph")
 starting_date = st.date_input("Choose a starting date", value=datetime(2020,1,22),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
 ending_date = st.date_input("Choose a ending date", value=datetime(2021,4,10),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
+chosen_data2 = st.selectbox("Select data for graph", ["Cases","Deaths","Recovered"])
 
-df_countries = create_data_graph(chosen_country,chosen_data,starting_date,ending_date)
-figura = create_graph(df_countries,chosen_data)
+df_countries = create_data_graph(chosen_country,chosen_data2,starting_date,ending_date)
+figura = create_graph(df_countries,chosen_data2)
 st.plotly_chart(figura)
 
 st.title("Covid-19 Spanish Dashboard")
