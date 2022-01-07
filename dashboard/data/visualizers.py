@@ -3,9 +3,17 @@ import folium
 import plotly.graph_objs as go
 import plotly.express as px
 import pandas as pd
-from data.aux_functions import create_coord_list, create_data_list, create_data_list_ccaa, get_ccaa_full_data
+from data.aux_functions import create_coord_list, create_data_date_list, create_data_list, create_data_list_ccaa, get_ccaa_full_data, create_basic_data_list_ccaa
 
 #INTERNATIONAL FUNCTIONS
+
+def create_dataframe_countries(listacountries,chosen_data):
+    listadfcountries = create_data_date_list(listacountries,chosen_data, "2021-04-10")
+    df_countries = pd.DataFrame()
+    for i in range(0,len(listadfcountries)):
+        df_countries= df_countries.append(pd.DataFrame(listadfcountries[i]))
+        df_countries.pop("Date")
+    return df_countries
 
 def create_graph(df_countries,chosen_data):
     if df_countries.empty==True:
@@ -25,7 +33,7 @@ def create_map(listacountries,chosen_data):
 #NATIONAL FUNCTIONS
 
 def create_dataframe(listaccaa):
-    listafulldataccaa = create_data_list_ccaa(listaccaa)
+    listafulldataccaa = create_basic_data_list_ccaa(listaccaa)
     df = pd.DataFrame()
     for i in range(0,len(listafulldataccaa)):
         df= df.append(pd.DataFrame(listafulldataccaa[i]))
@@ -59,6 +67,6 @@ def create_pie_chart(chosen_pie_ccaa):
         for dato in datos_chart:
             for label in labels:
                 values.append(dato[f"{label}"])
-        pie_chart = go.Figure(data=[go.Pie(labels=labels,values=values, hole=.3)])
+        pie_chart = go.Figure(data=[go.Pie(labels=labels,values=values, title=chosen_pie_ccaa,hole=.3)])
         return pie_chart
 

@@ -3,6 +3,7 @@ from pages.covid_spanish import covid_spanish
 import streamlit as st
 
 
+st.set_page_config(layout="wide")
 st.title("Welcome to Covid-19 Dashboard")
 page = st.selectbox("Please select one page", ["Main Page","International","Spanish"])
 

@@ -1,5 +1,5 @@
 from data.get import get_country_coord, get_country_data, get_country_data_date, get_country_data_between_date
-from data.get_communities import get_ccaa_full_data
+from data.get_communities import get_ccaa_full_data, get_ccaa_basic_data
 import pandas as pd
 
 #INTERNATIONAL AUX FUNCTIONS
@@ -40,4 +40,13 @@ def create_data_list_ccaa(listaccaa):
         listavaccinesccaa = []
         for ccaa in listaccaa:
             listavaccinesccaa.append(get_ccaa_full_data(ccaa))
+        return listavaccinesccaa
+
+def create_basic_data_list_ccaa(listaccaa):
+    if (listaccaa)==None:
+        return None
+    else:
+        listavaccinesccaa = []
+        for ccaa in listaccaa:
+            listavaccinesccaa.append(get_ccaa_basic_data(ccaa))
         return listavaccinesccaa

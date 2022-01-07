@@ -23,7 +23,7 @@ def get_ccaas_most_compl_vac():
 
 @router.get("/covid_ccaa/basic_data/{ccaa}")
 def get_ccaa_basic_data(ccaa):
-    results = list(db["Covid_Comunidades"].find({"Comunidad autónoma": ccaa},{"_id":0,"Casos":1, "Fallecidos":1,"Población":1}))
+    results = list(db["Covid_Comunidades"].find({"Comunidad autónoma": ccaa},{"_id":0,"Comunidad autónoma":1,"Casos":1, "Fallecidos":1,"Población":1,"Total Pauta Completa":1,"Porcentaje Pauta Completa":1}))
     return loads(json_util.dumps(results))
 
 @router.get("/covid_ccaa/full_data/{ccaa}")
