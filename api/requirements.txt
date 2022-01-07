@@ -1,0 +1,7 @@
+python==3.9.7
+uvicorn==0.16.0
+requests==2.26.0
+pymongo==4.0.1
+fastapi==0.70.1
+dnspython==2.1.0
+python-dotenv==0.19.2
