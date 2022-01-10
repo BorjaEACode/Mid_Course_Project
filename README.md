@@ -23,9 +23,9 @@ For running the API just type this command, at level of folder api:
 You must copy the IP given in the prompt and paste it into your browser.
 
 If everything worked out properly, you should get something like this.
-![](images/captura%20entrar%20api)
+![](images/captura%20entrar%20api.png)
 Now you can add the endpoint "/docs" to browse in the database.
-![](images/captura%20api%20docs)
+![](images/captura%20api%20docs.png)
 
 ## Endpoints' breakthrough
 You can inquire to two different database, covid_internacional and covid_ccaa. The variables which you can choose are set between {}.
