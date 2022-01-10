@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import covid_internacional, covid_ccaa
+from routers import covid_internacional, covid_ccaa
 
 app = FastAPI()
 

@@ -1,4 +1,4 @@
-from data.get import get_country_coord, get_country_data, get_country_data_date, get_country_data_between_date
+from data.get import get_country_coord, get_country_data, get_country_all_data, get_country_data_date, get_country_data_between_date, get_country_all_data_date
 from data.get_communities import get_ccaa_full_data, get_ccaa_basic_data
 import pandas as pd
 
@@ -16,10 +16,22 @@ def create_data_list(listacountries, chosen_data):
         listadatacountries.append(get_country_data(country, chosen_data))
     return listadatacountries
 
+def create_all_data_list(listacountries):
+    listadatacountries = []
+    for country in listacountries:
+        listadatacountries.append(get_country_all_data(country))
+    return listadatacountries
+
 def create_data_date_list(listacountries, chosen_data, date):
     listadatadatecountries = []
     for country in listacountries:
         listadatadatecountries.append(get_country_data_date(country,chosen_data,date))
+    return listadatadatecountries
+
+def create_all_data_date_list(listacountries, date):
+    listadatadatecountries = []
+    for country in listacountries:
+        listadatadatecountries.append(get_country_all_data_date(country,date))
     return listadatadatecountries
 
 def create_data_graph(listacountries,chosen_data,date1,date2):

@@ -3,12 +3,12 @@ import folium
 import plotly.graph_objs as go
 import plotly.express as px
 import pandas as pd
-from data.aux_functions import create_coord_list, create_data_date_list, create_data_list, create_data_list_ccaa, get_ccaa_full_data, create_basic_data_list_ccaa
+from data.aux_functions import create_coord_list, create_all_data_list, create_data_date_list, create_all_data_date_list, create_data_list, create_data_list_ccaa, get_ccaa_full_data, create_basic_data_list_ccaa
 
 #INTERNATIONAL FUNCTIONS
 
-def create_dataframe_countries(listacountries,chosen_data):
-    listadfcountries = create_data_date_list(listacountries,chosen_data, "2021-04-10")
+def create_dataframe_countries(listacountries):
+    listadfcountries = create_all_data_date_list(listacountries, "2021-04-10")
     df_countries = pd.DataFrame()
     for i in range(0,len(listadfcountries)):
         df_countries= df_countries.append(pd.DataFrame(listadfcountries[i]))
@@ -22,12 +22,12 @@ def create_graph(df_countries,chosen_data):
         figure = px.line (df_countries, x="Date", y=f"{chosen_data}", color="Country/Region")
     return figure
 
-def create_map(listacountries,chosen_data):
+def create_map(listacountries):
     m = folium.Map(location=[0,0], zoom_start=2)
     listacoordcountries = create_coord_list(listacountries)
-    listadatacountries = create_data_list(listacountries,chosen_data)
+    listadatacountries = create_all_data_list(listacountries)
     for i in range(len(listacountries)):
-        folium.Marker((listacoordcountries[i][0]["Lat"],listacoordcountries[i][0]["Long"]), popup=listacountries[i], tooltip=(listacountries[i],listadatacountries[i][-1][f"{chosen_data}"],f"Total {chosen_data}")).add_to(m)
+        folium.Marker((listacoordcountries[i][0]["Lat"],listacoordcountries[i][0]["Long"]), popup=listacountries[i], tooltip=(((listacountries[i],"{:.4f}".format(listadatacountries[i][-1]["Deaths"]/listadatacountries[i][-1]["Cases"]*100),"%")))).add_to(m)
     return folium_static(m)
 
 #NATIONAL FUNCTIONS

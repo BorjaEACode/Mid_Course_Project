@@ -9,16 +9,16 @@ def covid_international():
     st.header("International Dashboard")
 
     chosen_country = st.multiselect("Select country/countries", get_country_list())
-    chosen_data = st.selectbox("Select data for map", ["Cases","Deaths","Recovered"])
     
     st.header("Total Data Table")
-    df_countries = (create_dataframe_countries(chosen_country,chosen_data))
+    df_countries = create_dataframe_countries(chosen_country)
     st.dataframe(df_countries)
 
-    st.header("Total Data Map")
-    create_map(chosen_country, chosen_data)
+    st.header("% Deaths Data Map")
+    create_map(chosen_country)
 
     st.header("Interval Data Graph")
+    chosen_data = st.selectbox("Select data for graph", ["Cases","Deaths","Recovered"])
     starting_date = st.date_input("Choose a starting date", value=datetime(2020,1,22),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
     ending_date = st.date_input("Choose a ending date", value=datetime(2021,4,10),min_value=datetime(2020,1,22), max_value=datetime(2021,4,10))
 
