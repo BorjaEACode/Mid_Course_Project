@@ -62,4 +62,16 @@ def get_country_data_between_date(country, data, date1, date2):
     results = list(db["Covid_Data"].find({"Country/Region": country, "Date":{"$gte":date1, "$lte":date2}},
     {"Country/Region":1,f"{data}":1,"Date":1,"_id":0}))
     return loads(json_util.dumps(results))
+
+@router.get("/covid_internacional/between_date_all_data/{country}/{date1}/{date2}")
+def get_country_data_between_date(country, date1, date2):
+    if type(date1)==str:
+        date1 = datetime.strptime(date1,"%Y-%m-%d")
+        date2 = datetime.strptime(date2,"%Y-%m-%d")
+    else:
+        date1=date1
+        date2=date2
+    results = list(db["Covid_Data"].find({"Country/Region": country, "Date":{"$gte":date1, "$lte":date2}},
+    {"Country/Region":1,"Cases":1,"Deaths":1,"Recovered":1,"Date":1,"_id":0}))
+    return loads(json_util.dumps(results))
     

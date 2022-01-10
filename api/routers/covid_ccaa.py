@@ -5,7 +5,7 @@ from json import loads
 
 router = APIRouter()
 
-@router.get("/covid")
+@router.get("/covid_ccaa")
 def covid_root():
     return {
         "message": "Welcome to the covid Spain CCAA database"
