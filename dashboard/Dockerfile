@@ -6,4 +6,4 @@ WORKDIR /dashboard
 
 RUN pip install -r requirements.txt
 
-CMD ["streamlit","run","main.py"]
+CMD ["sh","-c","streamlit run --server.port $PORT main.py"]
