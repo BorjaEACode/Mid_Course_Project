@@ -136,4 +136,7 @@ Next a very interesting dashboard, a radar plot that displays how many vaccine's
 Lastly, a comparative pie chart where you choose two ccaas and it shows the percentage of each vaccine's brand.
 
 ![](images/piechart_ccaa.PNG)
+<<<<<<< HEAD
 
+=======
+>>>>>>> bbdcddec6bde98b8edba31758fbe08ac09ded630
