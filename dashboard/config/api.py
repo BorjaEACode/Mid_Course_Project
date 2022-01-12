@@ -3,4 +3,3 @@ import os
 
 load_dotenv()
 URL = os.getenv("FRONT_URL")
-print(URL)
