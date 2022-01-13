@@ -2,6 +2,7 @@
 This project would provide information about covid-19 in worldwide and spanish scope during 2020 and 2021.
 
 It is composed of an api which fulfills the function of providing information to the dashboard that will allow us to kindly see it.
+Firstly, I will guide you on how installing the apps and their functionalities, although if you don't want to install them but use them, scroll down to the end of the page where you could find the links to access the apps online.
 
 Let's begin!
 
@@ -32,7 +33,11 @@ Now you can add the endpoint "/docs" to browse in the database.
 ![](images/api_docs.PNG)
 
 ## Endpoints' breakthrough
-You can inquire to two different database, covid_internacional and covid_ccaa. The variables which you can choose are set between {}.
+You can inquire to two different database, covid_internacional and covid_ccaa.
+This API has got a display where you can see all the endpoints that set the databases, you can add "/docs" to the IP given and check it out.
+
+On the other hand, now I will teach how to use the different endpoints and the variables involved in getting the data.
+The variables which you can choose are set between {}.
 
 - **Worldwide**
 
@@ -136,3 +141,10 @@ Next a very interesting dashboard, a radar plot that displays how many vaccine's
 Lastly, a comparative pie chart where you choose two ccaas and it shows the percentage of each vaccine's brand.
 
 ![](images/piechart_ccaa.PNG)
+
+# Direct Web Access
+
+The endpoints and behavior of the apps are the same accessing via web, so you can use them straightaway.
+
+- API => https://covid-19-apidata.herokuapp.com/
+- DASHBOARD => https://covid-19-dashboarddata.herokuapp.com/
